@@ -1,0 +1,250 @@
+﻿
+@{
+    ViewBag.Title = "Bill";
+}
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #faa9bd;
+            color: #fff;
+            padding: 25px;
+            text-align: right;
+        }
+
+            nav a{
+                color: #fff;
+                text-decoration: none;
+                margin: 0 15px;
+                font-size:15px;
+            }
+
+            
+
+        section {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .sidenav {
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #e85779;
+            overflow-x: hidden;
+            padding-top: 117px;
+        }
+
+    .sidenav a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #fff;
+                display: block;
+    }
+
+    .sidenav a:hover {
+                    color: #f1f1f1;
+    }
+    div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 1000px;
+    }
+
+    </style>
+
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.datepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link href="~/Content/layout.css" rel="stylesheet" />
+</head>
+
+<body>
+
+
+
+    <nav>
+        
+        <a href="/Home/Index" style="">LOGOUT</a>
+    </nav>
+
+    <div class="sidenav">
+        <h2 style="color: #fff;text-decoration: none;margin: 0 15px 46px;font-size: 30px;">MENU</h2>
+        <a href="/Home/Dashboard">Dashboard</a>
+        <a href="/Home/Report">Report</a>
+    </div>
+    <div class="content">
+        <div class="row">
+
+            <div class="col-xs-11">
+                <div style="padding-left:20px;">
+                    <!--  Heading -->
+                    <div class="core-head clearfix">
+                        <h1>BILL</h1>
+                        <div class="whiteBox margin-btm-a">
+                            <div class="wBCont">
+                                <div class="row">
+                                    <div class="wBHead clearfix" style="float:right">
+                                        <h1><span class="icon iconA"><i class="far fa-edit"></i></span> <button type="button" onclick="objbill.showModalForm('Create')" class="btn btn-add"><i class="ion-plus-round"></i> Add new Bill</button></h1>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="top-row row">
+                            <div class="col-md-12">
+                                <a href="#" class="adv-btn margin-bothRL-a" data-toggle="collapse" data-target="#adv-search" style="margin-top:-25px;">AdvanceFilters <i class="ion-arrow-down-b"></i></a>
+                                <div id="adv-search" class="collapse row">
+                                    <div class="adv-inner">
+                                        <input type="text" id="txtDateFilter" placeholder="Date" class="wid-100" maxlength="50" />
+                                        <select id="ddlSalesManFilter" style="width:25%;" maxlength="50"></select>
+                                        <select id="ddlRouteFilter" style="width:25%;" maxlength="50"></select>
+                                        <select id="ddlShopNameFilter" style="width:25%;" maxlength="50"></select>
+                                        <button onclick="objbill.ListBill(1);" class="btnfilter" id="btnShow">Show</button>
+                                        <button onclick="objbill.ClearFilter();" class="btnfilter" id="btnClearFilter">Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--  Heading End  -->
+
+                    <div class="clearfix">
+
+
+                        <div id="divbillList"></div>
+                        <div id="page-selection" style="display:none;"></div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="modal fade" id="Popupbill">
+                <div class="modal-dialog modal-sma">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Add New Bill</h4>
+                            <input type="hidden" id="hdBillId" />
+                        </div>
+
+
+                        <div class="modal-body" style="min-height:200px;">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label class="label-block">Date</label>
+                                    <input type="text" id="txtDate" class="wid-100" maxlength="50" required />
+                                </div>
+                                <div class="col-xs-6">
+                                    <label class="label-block">SalesMan</label>
+                                    <select id="ddlSalesMan" class="wid-100" maxlength="50" required></select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label class="label-block">Route</label>
+                                    <select id="ddlRoute" class="wid-100" maxlength="50" required></select>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label class="label-block">ShopName</label>
+                                    <select id="ddlShopName" class="wid-100" maxlength="50" required></select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label class="label-block">Bill Amount</label>
+                                    <input type="text" id="txtBillAmount" class="wid-100 number" maxlength="50" required/>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label class="label-block">Cash Recived</label>
+                                    <input type="text" id="txtCashRecived" class="wid-100 number" maxlength="50" required />
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button onclick="objbill.SaveBill(1)" class="btn btn-grn">Save</button>
+                            <button onclick="objbill.close()" class="btn btn-default" data-dismiss="modal">close</button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Your Website Name. All rights reserved.</p>
+    </footer>
+
+
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+
+    @*<script src="~/Scripts/datepicker.js"></script>
+        <script src="~/Scripts/bootstrap.datepicker.js"></script>*@
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/SalesApplication/Bill.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            objbill.init();
+        });
+
+    </script>
+</body>
+
+</html>

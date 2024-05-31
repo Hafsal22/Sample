@@ -1,0 +1,205 @@
+﻿
+@{
+    ViewBag.Title = "Reports";
+}
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #faa9bd;
+            color: #fff;
+            padding: 25px;
+            text-align: right;
+        }
+
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                margin: 0 15px;
+                font-size: 15px;
+            }
+
+
+
+        section {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #e85779;
+            overflow-x: hidden;
+            padding-top: 117px;
+        }
+
+            .sidenav a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+            }
+
+                .sidenav a:hover {
+                    color: #f1f1f1;
+                }
+
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 1000px;
+        }
+    </style>
+
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.datepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link href="~/Content/layout.css" rel="stylesheet" />
+</head>
+
+<body>
+
+
+
+    <nav>
+
+        <a href="/Home/Index" style="">LOGOUT</a>
+    </nav>
+
+    <div class="sidenav">
+        <h2 style="color: #fff;text-decoration: none;margin: 0 15px 46px;font-size: 30px;">MENU</h2>
+        <a href="/Home/Dashboard">Dashboard</a>
+        <a href="/Home/Report">Report</a>
+    </div>
+    <div class="content">
+        <div class="row">
+
+            <div class="col-xs-11">
+                <div style="padding-left:20px;">
+                    <!--  Heading -->
+                    <div class="core-head clearfix">
+                        <h1>BILL</h1>
+
+
+                    </div>
+                    <!--  Heading End  -->
+                    <div class="top-row row">
+                        <div class="col-md-12">
+
+                            <div>
+                                <div class="clearfix">
+
+                                    <div class="adv-inner">
+                                        <input type="text" id="txtFromDate" placeholder="From Date" class="wid-100" maxlength="50" />
+                                        <input type="text" id="txtToDate" placeholder="To Date" class="wid-100" maxlength="50" />
+
+                                        <button onclick="objReport.ListReport(1);" class="btnfilter" id="btnShow">Show</button>
+                                        <button onclick="objReport.ClearFilter();" class="btnfilter" id="btnClearFilter">Clear</button>
+                                    </div>
+
+
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div id="divReportList"></div>
+                        <div id="page-selection" style="display:none;"></div>
+
+                        <div id="divReportMain"></div>
+
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-10">
+
+
+
+
+                <div id="divReportMain"></div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Your Website Name. All rights reserved.</p>
+    </footer>
+
+
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+
+    @*<script src="~/Scripts/datepicker.js"></script>
+        <script src="~/Scripts/bootstrap.datepicker.js"></script>*@
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    
+    <script src="~/Scripts/SalesApplication/Report.js"></script>
+    <script>
+        $(document).ready(function () {
+            objReport.init();
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+          
+            background-image: url('../../Images/Background.jpg');
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .login-container h2 {
+                text-align: center;
+            }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .form-group input {
+                padding: 8px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+                .form-group input[type="submit"] {
+                    background-color: #4caf50;
+                    color: #fff;
+                    cursor: pointer;
+                }
+
+                    .form-group input[type="submit"]:hover {
+                        background-color: #45a049;
+                    }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        @*<form class="login-form"  method="post">*@
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="txtUsername" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="txtPassword" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Login" onclick="objlogin.Login();">
+            </div>
+        @*</form>*@
+    </div>
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="~/Scripts/SalesApplication/Login.js"></script>
+    <script>
+        $(document).ready(function () {
+            objlogin.init();
+        });
+        
+    </script>
+</body>
+
+</html>
+
+
